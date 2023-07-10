@@ -3,13 +3,18 @@
 namespace App\DataFixtures;
 
 use App\Entity\Jeu;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
 class AppFixtures extends Fixture
 {
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher){
+        $this->userPasswordHasher = $userPasswordHasher;
+    }
     public function load(ObjectManager $manager): void
     {
         $faker = Faker\Factory::create();
@@ -25,6 +30,13 @@ class AppFixtures extends Fixture
        $manager->persist($jeu);
 
         }
+        $user = new User();
+        $user->setEmail("user@gmail.com");
+        $user->setNom($faker->name);
+        $user->setPrenom($faker->firstName);
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, "123"));
+        $user->setRoles(['ROLE_USER']);
+        $manager->persist($user);
 
        $manager->flush();
     }
