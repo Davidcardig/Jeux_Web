@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prestations{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2>Formulaire de Prestation</h2>
+        <form>
+            <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Entrez votre email">
+            </div>
+            <div class="form-group">
+                <label for="telephone">Téléphone:</label>
+                <input type="tel" class="form-control" id="telephone" placeholder="Entrez votre numéro de téléphone">
+            </div>
+            <div class="form-group">
+                <label for="prestation">Prestation souhaitée:</label>
+                <select class="form-control" id="prestation">
+                    <option value="prestation1">Prestation 1</option>
+                    <option value="prestation2">Prestation 2</option>
+                    <option value="prestation3">Prestation 3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Entrez votre message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </div>
+{% endblock %}
