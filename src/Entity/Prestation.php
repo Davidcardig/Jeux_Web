@@ -24,10 +24,10 @@ class Prestation
     private ?string $Description = null;
 
     #[ORM\Column]
-    private ?float $Rénumération = null;
+    private ?float $Renumeration = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $DateCréation = null;
+    private ?\DateTimeInterface  $DateCreation = null;
 
     #[ORM\Column(length: 255)]
     private ?string $NumberPhone = null;
@@ -73,26 +73,26 @@ class Prestation
         return $this;
     }
 
-    public function getRénumération(): ?float
+    public function getRenumeration(): ?float
     {
-        return $this->Rénumération;
+        return $this->Renumeration;
     }
 
-    public function setRénumération(float $Rénumération): static
+    public function setRenumeration(float $Renumeration): static
     {
-        $this->Rénumération = $Rénumération;
+        $this->Renumeration = $Renumeration;
 
         return $this;
     }
 
-    public function getDateCréation(): ?\DateTimeInterface
+    public function getDateCreation(): ?\DateTimeInterface
     {
-        return $this->DateCréation;
+        return $this->DateCreation;
     }
 
-    public function setDateCréation(\DateTimeInterface $DateCréation): static
+    public function setDateCreation(\DateTimeInterface $DateCreation): static
     {
-        $this->DateCréation = $DateCréation;
+        $this->DateCreation = $DateCreation;
 
         return $this;
     }
