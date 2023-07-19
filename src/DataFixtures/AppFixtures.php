@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Jeu;
 use App\Entity\User;
+use App\Entity\Prestation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
@@ -29,6 +30,16 @@ class AppFixtures extends Fixture
        $jeu ->setDescription($faker->text(50));
        $manager->persist($jeu);
 
+       $prestation = new Prestation();
+       $prestation->setNom($faker->streetName);
+       $prestation->setExtrait($faker->text(50));
+       $prestation->setDescription($faker->text(50));
+       $prestation->setNumberPhone($faker->phoneNumber);
+       $prestation->setRenumeration($faker->randomFloat(2, 0, 1000));
+       $prestation->setDateCreation($faker->dateTime);
+       $manager->persist($prestation);
+
+
         }
         $user = new User();
         $user->setEmail("user@gmail.com");
@@ -38,6 +49,8 @@ class AppFixtures extends Fixture
         $user->setDateInscription($faker->dateTime);
         $user->setRoles(['ROLE_USER']);
         $manager->persist($user);
+
+
 
 
        $manager->flush();
