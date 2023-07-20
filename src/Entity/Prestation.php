@@ -26,12 +26,6 @@ class Prestation
     #[ORM\Column]
     private ?float $Renumeration = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface  $DateCreation = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $NumberPhone = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -81,30 +75,6 @@ class Prestation
     public function setRenumeration(float $Renumeration): static
     {
         $this->Renumeration = $Renumeration;
-
-        return $this;
-    }
-
-    public function getDateCreation(): ?\DateTimeInterface
-    {
-        return $this->DateCreation;
-    }
-
-    public function setDateCreation(\DateTimeInterface $DateCreation): static
-    {
-        $this->DateCreation = $DateCreation;
-
-        return $this;
-    }
-
-    public function getNumberPhone(): ?string
-    {
-        return $this->NumberPhone;
-    }
-
-    public function setNumberPhone(string $NumberPhone): static
-    {
-        $this->NumberPhone = $NumberPhone;
 
         return $this;
     }
