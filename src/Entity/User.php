@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -32,6 +33,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $nom = null;
 
     #[ORM\Column(length: 40)]
+    #[Assert\Length(
+        min: 3,
+        max: 15,
+        minMessage: 'Votre prénom doit contenir au minimum {{ limit }} charactères',
+        maxMessage: 'Votre prénom doit peut avoir au maximum {{ limit }} charactères',
+    )]
     private ?string $prenom = null;
     public function getId(): ?int
     {
