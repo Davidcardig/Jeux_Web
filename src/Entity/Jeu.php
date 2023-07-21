@@ -20,11 +20,12 @@ class Jeu
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateSortie = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $genre = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
+
+    #[ORM\ManyToOne(inversedBy: 'jeux')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Genre $genre = null;
 
     public function getId(): ?int
     {
@@ -55,17 +56,6 @@ class Jeu
         return $this;
     }
 
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(string $genre): static
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -75,6 +65,18 @@ class Jeu
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?Genre $genre): static
+    {
+        $this->genre = $genre;
 
         return $this;
     }
