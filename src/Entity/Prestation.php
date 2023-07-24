@@ -32,6 +32,10 @@ class Prestation
     )]
     private ?float $Renumeration = null;
 
+    #[ORM\ManyToOne(inversedBy: 'prestations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $User = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,6 +85,18 @@ class Prestation
     public function setRenumeration(float $Renumeration): static
     {
         $this->Renumeration = $Renumeration;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
 
         return $this;
     }

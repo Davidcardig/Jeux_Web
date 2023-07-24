@@ -1,0 +1,33 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Lister les Jeux{% endblock %}
+
+{% block body %}
+    <h1>Lister les Jeux</h1>
+
+    <a href="{{ path('app_admin_jeux_ajouter') }}" class="btn btn-success">Ajouter un jeux</a>
+
+    <table class="table mt-5">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for jeu in jeux %}
+            <tr>
+                <td>{{ jeu.nom }}</td>
+                <td>{{ jeu.genre.nom }}</td>
+                <td>{{ jeu.description }}</td>
+                <td>
+                    <a href="{{ path('app_admin_jeux_modifier', {'id' : jeux.id}) }}" class="btn btn-sm btn-primary">Modifier</a>
+                    <a href="{{ path('app_admin_jeux_supprimer', {'id' : jeux.id}) }}" onclick="return confirm('Êtes vous sûr ?')" class="btn btn-sm btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

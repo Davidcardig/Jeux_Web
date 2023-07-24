@@ -22,6 +22,25 @@ class AppFixtures extends Fixture
         $faker = Faker\Factory::create();
         $genres =["stratégie",'familiale',"ambiance","coopéeration"];
 
+
+        $user = new User();
+        $user->setEmail("user@gmail.com");
+        $user->setNom($faker->name);
+        $user->setPrenom($faker->firstName);
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, "123"));
+        $user->setRoles(['ROLE_USER']);
+        $manager->persist($user);
+
+        $user = new User();
+        $user->setEmail("admin@gmail.com");
+        $user->setNom($faker->name);
+        $user->setPrenom($faker->firstName);
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, "Crdg"));
+        $user->setRoles(['ROLE_ADMIN']);
+        $manager->persist($user);
+
+
+
         for ($i = 0; $i<10; $i++){
 
             $genre = new Genre();
@@ -39,6 +58,7 @@ class AppFixtures extends Fixture
             $manager->persist($jeu);
 
             $prestation = new Prestation();
+            $prestation->setUser($user);
             $prestation->setNom($faker->streetName);
             $prestation->setExtrait($faker->text(50));
             $prestation->setDescription($faker->text(50));
@@ -47,21 +67,6 @@ class AppFixtures extends Fixture
 
 
         }
-        $user = new User();
-        $user->setEmail("user@gmail.com");
-        $user->setNom($faker->name);
-        $user->setPrenom($faker->firstName);
-        $user->setPassword($this->userPasswordHasher->hashPassword($user, "123"));
-        $user->setRoles(['ROLE_USER']);
-        $manager->persist($user);
-
-        $user = new User();
-        $user->setEmail("admin@gmail.com");
-        $user->setNom($faker->name);
-        $user->setPrenom($faker->firstName);
-        $user->setPassword($this->userPasswordHasher->hashPassword($user, "Crdg"));
-        $user->setRoles(['ROLE_ADMIN']);
-        $manager->persist($user);
 
 
 

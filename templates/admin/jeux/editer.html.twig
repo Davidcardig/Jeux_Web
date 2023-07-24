@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ (app.request.get('_route') =='app_admin_jeux_ajouter' ? 'Ajouter' : 'Modifier')}} un jeux{% endblock %}
+
+{% block body %}
+    <h1>{{ (app.request.get('_route') =='app_admin_jeux_ajouter' ? 'Ajouter' : 'Modifier')}} un jeux</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.genre) }}
+    {{ form_row(form.description) }}
+
+    <button type="submit" class="btn btn-success">{{ (app.request.get('_route') =='app_admin_jeux_ajouter' ? 'Ajouter' : 'Modifier')}}</button>
+    {{ form_end(form) }}
+{% endblock %}

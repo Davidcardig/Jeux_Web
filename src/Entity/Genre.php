@@ -19,6 +19,11 @@ class Genre
     private ?string $nom = null;
 
     #[ORM\Column]
+    #[Assert\Range(
+        min: 0,
+        max: 10,
+        notInRangeMessage: 'Vous devez choisir un chiffre entre {{ min }} et {{ max }}',
+    )]
     private ?int $popularite = null;
 
     #[ORM\Column(length: 15, nullable: true)]

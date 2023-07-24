@@ -7,10 +7,10 @@
         <div class="row">
             <!-- Partie de gauche - Les 10 dernières prestations -->
             <div class="col-md-6">
-                <h2>Les 10 dernières prestations</h2>
+                <h2>Les dernières prestations</h2>
                 {% for prestation in prestations %}
                 <ul class="list-group">
-                    <li class="list-group-item">{{ prestation.Nom }} - 01-07-2020</li>
+                    <li class="list-group-item">{{ prestation.Nom }} - {{ prestation.User.prenom }} - {{ prestation.Renumeration }}€</li>
                 </ul>
                 {% endfor %}
             </div>
