@@ -2,6 +2,11 @@
 
 {% block title %}Hello JeuxController!{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('accueil') }}
+{% endblock %}
+
 {% block body %}
     <div class="container mt-5">
     <h1 class="text-center mt-5" >Bienvenue sur LocaJeu</h1>
@@ -13,8 +18,9 @@
 
                     <div class="card-body">
                         <h5 class="card-title">{{ jeu.nom }}</h5>
+                        <p class="card-title jeu__genre" style="background-color: {{ jeu.genre.couleur }}">{{ jeu.genre.nom }}</p>
                         <p class="card-text">{{ jeu.description }}</p>
-                        <a href="#" class="btn btn-primary">Voir plus</a>
+                        <a href="{{ path('jeu_voir', {'id' : jeu.id}) }}" class="btn btn-primary btn-sm">Voir le jeu</a>
                     </div>
                 </div>
             {% endfor %}

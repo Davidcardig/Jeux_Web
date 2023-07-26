@@ -23,8 +23,8 @@
                 <td>{{ jeu.genre.nom }}</td>
                 <td>{{ jeu.description }}</td>
                 <td>
-                    <a href="{{ path('app_admin_jeux_modifier', {'id' : jeux.id}) }}" class="btn btn-sm btn-primary">Modifier</a>
-                    <a href="{{ path('app_admin_jeux_supprimer', {'id' : jeux.id}) }}" onclick="return confirm('Êtes vous sûr ?')" class="btn btn-sm btn-danger">Supprimer</a>
+                    <a href="{{ path('app_admin_jeux_modifier', {'id' : jeu.id}) }}" class="btn btn-sm btn-primary">Modifier</a>
+                    <a href="{{ path('app_admin_jeux_supprimer', {'id' : jeu.id}) }}" onclick="return confirm('Êtes vous sûr ?')" class="btn btn-sm btn-danger">Supprimer</a>
                 </td>
             </tr>
         {% endfor %}

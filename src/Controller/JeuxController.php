@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Genre;
+
 use App\Entity\Jeu;
-use App\Form\GenreType;
 use App\Form\JeuType;
-use App\Repository\GenreRepository;
 use App\Repository\JeuRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,8 +37,8 @@ class JeuxController extends AbstractController
         ]);
     }
 
-    #[Route('/ajouter', name: 'app_admin_jeux_ajouter')]
-    #[Route('/modifier/{id}', name: 'app_admin_jeux_modifier')]
+    #[Route('jeu/ajouter', name: 'app_admin_jeux_ajouter')]
+    #[Route('jeu/modifier/{id}', name: 'app_admin_jeux_modifier')]
     public function editer(Request $request,JeuRepository $jeuRepository, EntityManagerInterface $entityManager, int $id = null): Response
     {
 
@@ -99,7 +97,18 @@ class JeuxController extends AbstractController
 
         return $this->redirectToRoute('app_admin_jeux');
 
+
+
     }
 
+    #[Route('/voir/{id}', name: 'jeu_voir')]
+    public function voir(JeuRepository $jeuRepository, int $id): Response
+    {
+        $jeu = $jeuRepository->find($id);
+
+        return $this->render('jeux/voir.html.twig', [
+            'jeu' => $jeu
+        ]);
+    }
 
 }

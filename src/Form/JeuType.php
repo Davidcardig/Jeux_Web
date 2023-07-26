@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Genre;
 use App\Entity\Jeu;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +17,10 @@ class JeuType extends AbstractType
             ->add('nom')
             ->add('dateSortie')
             ->add('description')
-            ->add('genre')
+            ->add('genre', EntityType::class,[
+                'class' => Genre::class,
+                'choice_label' => 'nom'
+        ])
         ;
     }
 
